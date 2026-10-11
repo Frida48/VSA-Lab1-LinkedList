@@ -21,3 +21,33 @@ class LinkedList:
         while son_element.next:
              son_element = son_element.next
     son_element.next =  yeni_element
+    # Node silmek funksiyasi
+    def delete_node(self, key):
+        gecici = self.head
+   
+        if gecici is not None:
+            if gecici.data == key:
+                self.head = gecici.next
+                gecici = None
+                return "Silindi"
+                
+        while gecici is not None:
+            if gecici.data == key:
+                break
+            evvelki_node = gecici
+            gecici = gecici.next
+            
+        if gecici == None:
+            return "Element tapilmadi"
+            
+        evvelki_node.next = gecici.next
+        gecici = None
+        return "Silindi"
+
+    def search_node(self, key):
+        current = self.head
+        while current:
+            if current.data == key:
+                return True
+            current = current.next
+        return False
