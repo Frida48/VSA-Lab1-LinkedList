@@ -21,7 +21,6 @@ class LinkedList:
         while son_element.next:
              son_element = son_element.next
     son_element.next =  yeni_element
-    # Node silmek funksiyasi
     def delete_node(self, key):
         gecici = self.head
    
@@ -51,3 +50,43 @@ class LinkedList:
                 return True
             current = current.next
         return False
+
+    def reverse_list(self):
+        evvelki = None
+        current = self.head
+        while current:
+            novbeti = current.next
+            current.next = evvelki
+            evvelki = current
+            current = novbeti
+        self.head = evvelki
+
+    def print_list(self):
+        elementler = []
+        current = self.head
+        while current:
+            elementler.append(str(current.data))
+            current = current.next
+        print(" -> ".join(elementler) + " -> None")
+
+if __name__ == "__main__":
+    my_list = LinkedList()
+    
+    print("--- 1. Insert testleri ---")
+    my_list.insert_at_beginning(10)
+    my_list.insert_at_beginning(20)
+    my_list.insert_at_end(30)
+    my_list.insert_at_end(40)
+    my_list.print_list()
+    
+    print("\n--- 2. Delete testi ---")
+    my_list.delete_node(20)
+    my_list.print_list()
+    
+    print("\n--- 3. Search testi ---")
+    print("30 var mi?:", my_list.search_node(30))
+    print("99 var mi?:", my_list.search_node(99))
+    
+    print("\n--- 4. Reverse testi ---")
+    my_list.reverse_list()
+    my_list.print_list()
